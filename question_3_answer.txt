@@ -1,0 +1,5 @@
+3. An isogram is a word with no repeating letters. Please complete the function is_isogram, which
+returns true ifthe word has no repeating letters. Could you do the same for a heterogram: a
+sentence with no repeating letters?
+
+Please check question_3.py to see my implementation.

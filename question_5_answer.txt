@@ -1,0 +1,16 @@
+5. Write a python program following the requirements below:
+
+The program mustretrieve, on startup, the users, the first 10 posts (sorted by ID) and the comments of
+those posts from https://jsonplaceholder.typicode.com/ API (see the link to get all the information)
+The data, had not been written before, shall be stored in a DB
+The program will expose an API with the following functions:
+Return info from a userID
+Return all posts from the same user
+Return a particular post and its comments
+The code shall include the means to generate a pip wheel to be installed in any target machine by pip,
+including installing a script to call the program from the CLI, alongside a small README file with the
+necessary instructions
+
+
+
+Please check question_5.py to see my implementation.

@@ -1,0 +1,8 @@
+2. Given the following code, please rewrite generate_list and use_list functions using at least one
+different iterator
+
+If I understand the question correctly, we need to use a different iterator and not loop as we usually
+do in an iterable object.
+
+Please, check question_2.py to see my implementation. I used generators and the iter() method in order to loop through the
+generator.

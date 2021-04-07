@@ -1,0 +1,27 @@
+QUESTION 1
+
+1. Comment about the possible output values of the following code in Python and how you would
+overcome the drawbacks when using different Python versions
+
+As suggested by the question, the main issue with these lines of code is that different Python versions will interpret 
+the '/' operator differently.
+
+Python 2.x will interpret the '/' operator as an integer division if the inputs are integers.
+
+Python 3.x will interpret the '/' operator as a floating point division.
+
+That said, the result variable will be equal to 1 for Python 2.x interpreters and will be 1.4 for
+Python 3.x interpreters.
+
+I believe that the best way to handle potentials exceptions that this difference could cause is to directly deploy
+all the Python source code in a Python Virtual environment. 
+
+This test will be delivered as a project in a virtual environment, and all that's needed is to run in the root folder of 
+this project:
+
+$ source .venv/bin/activate
+
+And the virtual environment will be activated. This will isolate the execution environment not only to a specific Python version 
+but also ensure only the needed dependencies will be used.
+
+If you are using Windows (non-UNIX), you might want to create a new Virtual Environment as they are not cross-OS compatible.
