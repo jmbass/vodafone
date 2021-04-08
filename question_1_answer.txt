@@ -25,3 +25,13 @@ And the virtual environment will be activated. This will isolate the execution e
 but also ensure only the needed dependencies will be used.
 
 If you are using Windows (non-UNIX), you might want to create a new Virtual Environment as they are not cross-OS compatible.
+
+In that case, please delete the .venv directory and create a new environment using python 3.x.
+
+> python -m venv .venv
+
+And then activate that environment.
+
+.venv\Scripts\activate
+
+
