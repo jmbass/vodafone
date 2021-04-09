@@ -6,7 +6,7 @@ The txt file will cover up the theorical answer and the Python scripts will serv
 
 The fifth question consist in a task where it is required to develop a simple API that populates a database on initialization. For this purpose, Flask is used.
 
-The chosen Database for this matter is MongoDB, as it is more comfortable to insert mongo documents as JSON objects retrieved from Jthe SONplaceholder API.
+The chosen Database for this matter is MongoDB, as it is more comfortable to insert mongo documents as JSON objects retrieved from the JSONplaceholder API.
 
 A relational database could also be used, but that'd require to create several tables and foreign references in order to store the objects adequately.
 
