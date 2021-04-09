@@ -45,7 +45,7 @@ def show_user(userId):
 # Returns specific user's posts
 @app.route('/users/<int:userId>/posts', methods=['GET'])
 def show_user_posts(userId):
-    return Response(json_util.dumps(mongo.db.posts.find_one({'userId': int(userId)})), mimetype="application/json")
+    return Response(json_util.dumps(mongo.db.posts.find({'userId': int(userId)})), mimetype="application/json")
 
 # returns specific user posts (or all of them) with query parameters
 @app.route('/posts', methods=['GET'])
@@ -70,8 +70,6 @@ def show_post_comments(postId):
 def show_comments_from_post():
     postId = request.args.get('postId')
     return Response(json_util.dumps(mongo.db.comments.find({'postId': int(postId)})), mimetype="application/json") if postId is not None else Response(json_util.dumps(mongo.db.comments.find()), mimetype="application/json")
-
-
 
 app.run()
 
