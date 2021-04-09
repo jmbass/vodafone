@@ -34,8 +34,8 @@ $ python question_5.py
 Please take into account that this project needs Python 3.x, so if you're on MacOS as I am, you should use these commands in order to start the API:
 
 ```sh
-$ pip install --no-index --find-links=./wheel/ -r requirements.txt
-$ python question_5.py
+$ pip3 install --no-index --find-links=./wheel/ -r requirements.txt
+$ python3 question_5.py
 ```
 
 
