@@ -78,7 +78,7 @@ RESPONSE::
 
 It was asked to provide a function so a user info can be retrieved with it's user ID
 
-``sh
+```sh
 REQUEST::
 curl -X GET \
   http://localhost:5000/users/<int:id> \
