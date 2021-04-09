@@ -115,7 +115,7 @@ RESPONSE::
 
 Return all posts from the same user:
 
-``sh
+```sh
 REQUEST::
 curl -X GET \
   http://localhost:5000/users/<int:id>/posts \
