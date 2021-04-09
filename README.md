@@ -12,7 +12,7 @@ A relational database could also be used, but that'd require to create several t
 
 MongoDB is required. Please install it from their official site or, if Docker is installed, you can easily run a MongoDB container with the following command in this project's root directory :dancer: :
 
-sh```
+```sh
 $ docker-compose up --build
 ```
 
@@ -22,13 +22,13 @@ This Flask app could also be dockerized, but I reckon that you want to see the i
 
 To install all the dependencies needed, please run the following command:
 
-sh```
+```sh
 $ pip install --no-index --find-links=./wheel/ -r requirements.txt
 ```
 
 After that, you can run the app with:
 
-sh```
+```sh
 $ python question_5.py
 ```
 
