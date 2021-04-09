@@ -12,31 +12,67 @@ including installing a script to call the program from the CLI, alongside a smal
 necessary instructions
 ''')
 
-import flask
+from flask import Flask, Response, request
+from bson import json_util
 import requests
 import json
 import persistence
+from flask_pymongo import PyMongo
+import pymongo
 
-from classes.User import User
+def page_not_found(e):
+  return {}, 404
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
+app.config['MONGO_URI'] =  'mongodb://localhost:27017/vodafone'
+app.register_error_handler(404, page_not_found)
+# Init DB if it hasn't yet
 
-response = requests.get("https://jsonplaceholder.typicode.com/users")
+mongo = PyMongo(app)
 
-response.json()
+persistence.intialize(mongo)
 
-users = []
+# Returns all users
+@app.route('/users', methods=['GET'])
+def show_all_users():
+    return Response(json_util.dumps(mongo.db.users.find()), mimetype="application/json")
 
-for element in response.json():
-    print(element)
-    users.append(User(**element))
+#  Returns specific user
+@app.route('/users/<int:userId>', methods=['GET'])
+def show_user(userId):
+    return Response(json_util.dumps(mongo.db.users.find_one(userId)), mimetype="application/json")
 
-print(users[0])
+# Returns specific user's posts
+@app.route('/users/<int:userId>/posts', methods=['GET'])
+def show_user_posts(userId):
+    return Response(json_util.dumps(mongo.db.posts.find_one({'userId': int(userId)})), mimetype="application/json")
 
-#@app.route('/', methods=['GET'])
-#def home():
-#    return "<h1>Hello, there</h1><p>I'm here</p>"
+# returns specific user posts (or all of them) with query parameters
+@app.route('/posts', methods=['GET'])
+def show_posts_from_users():
+    userId = request.args.get('userId')
+    return Response(json_util.dumps(mongo.db.posts.find({'userId': int(userId)}).sort('_id', pymongo.DESCENDING)), mimetype="application/json") if userId is not None else Response(json_util.dumps(mongo.db.posts.find().sort('_id', pymongo.DESCENDING)), mimetype="application/json")
 
-#app.run()
+# returns specific post with its comments
+@app.route('/posts/<int:id>', methods=['GET'])
+def show_post(id):
+    post = mongo.db.posts.find_one(id)
+    post['comments']  = mongo.db.comments.find({'postId': int(id)})
+    return Response(json_util.dumps(post), mimetype="application/json")
+
+# returns a specific post comments
+@app.route('/posts/<int:postId>/comments', methods=['GET'])
+def show_post_comments(postId):
+    return Response(json_util.dumps(mongo.db.comments.find({'postId': int(postId)})), mimetype="application/json")
+
+# returns comments of a specific post with query parameters
+@app.route('/comments', methods=['GET'])
+def show_comments_from_post():
+    postId = request.args.get('postId')
+    return Response(json_util.dumps(mongo.db.comments.find({'postId': int(postId)})), mimetype="application/json") if postId is not None else Response(json_util.dumps(mongo.db.comments.find()), mimetype="application/json")
+
+
+
+app.run()
 
 
