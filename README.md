@@ -31,6 +31,13 @@ After that, you can run the app with:
 ```sh
 $ python question_5.py
 ```
+Please take into account that this project needs Python 3.x, so if you're on MacOS as I am, you should use these commands in order to start the API:
+
+```sh
+$ pip install --no-index --find-links=./wheel/ -r requirements.txt
+$ python question_5.py
+```
+
 
 It will listen through port 5000. Let's see the API reference:
 
