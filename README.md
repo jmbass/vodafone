@@ -139,7 +139,7 @@ Return particular posts and their comments:
 
 Return all posts from the same user:
 
-``sh
+```sh
 REQUEST::
 
 curl -X GET \
